@@ -10,6 +10,7 @@ import android.util.Log;
 public class BaseGLSL  {
     private static final String TAG = "BaseGLSL";
 
+
     /**
      * 创建着色器，编译代码
      * @param type 着色器类型
