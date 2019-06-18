@@ -10,25 +10,15 @@ import android.opengl.Matrix;
  */
 public class CameraTriangle extends Triangle {
     //加入矩阵变换的顶点着色器
-    public static final String vertexMatrixShaderCode =
+    public  final String vertexMatrixShaderCode =
             "attribute vec4 aPosition;\n" +
                     "uniform mat4 aMatrix;\n" +
                     "void main(){" +
                     "gl_Position = aMatrix*aPosition;\n" +
                     "}";
 
-    //模型矩阵
-    protected float[] mModel= new float[16];
-    //视图矩阵
-    protected float[] mView = new float[16];
-    //透视矩阵
-    protected float[] mProjection = new float[16];
-    //运算后的矩阵
-    protected float[] mMVPMatrix = new float[16];
-
     public CameraTriangle(){
         super();
-        initProgram();
     }
 
     @Override
@@ -49,11 +39,12 @@ public class CameraTriangle extends Triangle {
 
     @Override
     public void draw() {
+
         GLES20.glUseProgram( mProgram );
 
         //设置顶点着色器数据
         int aPosition = GLES20.glGetAttribLocation( mProgram, "aPosition" );
-        GLES20.glVertexAttribPointer( aPosition,COORDS_COMPONENT, GLES30.GL_FLOAT,true,COORDS_COMPONENT*BYTE_SIZE,mVertexBuffer );
+        GLES20.glVertexAttribPointer( aPosition,COORDS_COMPONENT, GLES30.GL_FLOAT,true,COORDS_COMPONENT*FLOAT_BYTE_SIZE,mVertexBuffer );
         GLES20.glEnableVertexAttribArray( aPosition );
 
         //设置矩阵

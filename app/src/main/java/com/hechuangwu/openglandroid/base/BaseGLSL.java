@@ -3,13 +3,30 @@ package com.hechuangwu.openglandroid.base;
 import android.opengl.GLES20;
 import android.util.Log;
 
+import java.nio.FloatBuffer;
+
 /**
  * Created by cwh on 2019/6/4 0004.
  * 功能:
  */
-public class BaseGLSL  {
+public abstract class BaseGLSL  {
     private static final String TAG = "BaseGLSL";
+    //数据类型占用字节数
+    protected  final int FLOAT_BYTE_SIZE = Float.SIZE/Byte.SIZE;
+    protected final int SHORT_BYTE_SIZE = Short.SIZE/Byte.SIZE;
 
+    //模型矩阵
+    protected float[] mModel= new float[16];
+    //视图矩阵
+    protected float[] mView = new float[16];
+    //透视矩阵
+    protected float[] mProjection = new float[16];
+    //运算后的矩阵
+    protected float[] mMVPMatrix = new float[16];
+    //运行程序
+    protected int mProgram;
+    //顶点数组
+    protected FloatBuffer mVertexBuffer;
 
     /**
      * 创建着色器，编译代码
@@ -57,9 +74,16 @@ public class BaseGLSL  {
             }
         }
         GLES20.glDeleteShader( vertexShader );
+
         GLES20.glDeleteShader( fragmentShader );
 
         return program;
     }
 
+
+    protected abstract void  allocateBuffer();//显存分配
+    protected abstract void initProgram();//编译着色器生成程序
+    public abstract void draw();//绘制
+    public void onSurfaceCreated(){}//用于初始化某些状态
+    public void onSurfaceChanged(int width,int height){}//矩阵运算
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.opengl.GLES20;
 
 import com.hechuangwu.openglandroid.base.BaseGLSurfaceView;
+import com.hechuangwu.openglandroid.shape.square.MatrixCube;
 import com.hechuangwu.openglandroid.shape.triangle.CameraTriangle;
 import com.hechuangwu.openglandroid.shape.triangle.ColorfulTriangle;
 import com.hechuangwu.openglandroid.shape.triangle.Triangle;
@@ -19,9 +20,9 @@ public class TriangleGLSurfaceView extends BaseGLSurfaceView {
     public TriangleGLSurfaceView(Context context) {
         super( context );
 
-//        setRenderer( new TriangleRenderer() );
-//        setRenderer( new CameraTriangleRenderer() );
-        setRenderer( new ColorTriangleRenderer() );
+//        setRenderer( new TriangleRenderer() );//普通三角形
+        setRenderer( new CameraTriangleRenderer() );//矩阵变换下三角形
+//        setRenderer( new ColorTriangleRenderer() );//顶点颜色三角形
     }
 
 
@@ -75,6 +76,26 @@ public class TriangleGLSurfaceView extends BaseGLSurfaceView {
         public void onDrawFrame(GL10 gl) {
             colorTriangle.draw();
         }
+    }
+
+    class MatrixRenderer implements Renderer{
+        MatrixCube matrixCube;
+        @Override
+        public void onSurfaceCreated(GL10 gl, EGLConfig config) {
+            matrixCube = new MatrixCube();
+            matrixCube.onSurfaceCreated();
+        }
+
+        @Override
+        public void onSurfaceChanged(GL10 gl, int width, int height) {
+            matrixCube.onSurfaceChanged(width,height);
+        }
+        @Override
+        public void onDrawFrame(GL10 gl) {
+            matrixCube.draw();
+        }
+
+
 
 
     }

@@ -11,7 +11,7 @@ import java.nio.FloatBuffer;
  * 功能:
  */
 public class ColorfulTriangle extends CameraTriangle {
-    protected static final String vertexColorShaderCode =
+    protected  final String vertexColorShaderCode =
             "attribute vec4 aPosition;\n" +
                     "uniform mat4 aMatrix;\n" +
                     "attribute vec4 aColor;\n" +
@@ -21,13 +21,12 @@ public class ColorfulTriangle extends CameraTriangle {
                     "aFragColor = aColor;\n"+
                     "}";
 
-    protected static final String fragmentColorShaderCode =
+    protected  final String fragmentColorShaderCode =
             "precision mediump float;\n" +
                     "varying vec4 aFragColor;\n" +
                     "void main(){\n" +
                     "gl_FragColor = aFragColor;\n" +
                     "}";
-
 
     //设置颜色
     private static float colorful[] = {
@@ -38,17 +37,21 @@ public class ColorfulTriangle extends CameraTriangle {
     //颜色分量个数
     private final int COLOR_COMPONENT = 4;
 
-    private final FloatBuffer mColorBuffer;
+    protected static FloatBuffer mColorBuffer=null;
 
 
     public ColorfulTriangle(){
         super();
-        ByteBuffer byteBuffer1 = ByteBuffer.allocateDirect( colorful.length * BYTE_SIZE );
+    }
+
+    @Override
+    protected void allocateBuffer() {
+        super.allocateBuffer();
+        ByteBuffer byteBuffer1 = ByteBuffer.allocateDirect( colorful.length * FLOAT_BYTE_SIZE );
         byteBuffer1.order( ByteOrder.nativeOrder() );
         mColorBuffer = byteBuffer1.asFloatBuffer();
         mColorBuffer.put( colorful );
         mColorBuffer.position(0);
-        initProgram();
     }
 
     @Override
@@ -61,7 +64,7 @@ public class ColorfulTriangle extends CameraTriangle {
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);
         GLES20.glUseProgram( mProgram );
         int aPosition = GLES20.glGetAttribLocation( mProgram, "aPosition" );
-        GLES20.glVertexAttribPointer( aPosition,COORDS_COMPONENT,GLES20.GL_FLOAT,true,COORDS_COMPONENT*BYTE_SIZE,mVertexBuffer );
+        GLES20.glVertexAttribPointer( aPosition,COORDS_COMPONENT,GLES20.GL_FLOAT,true,COORDS_COMPONENT*FLOAT_BYTE_SIZE,mVertexBuffer );
         GLES20.glEnableVertexAttribArray( aPosition );
 
         int aMatrix = GLES20.glGetUniformLocation( mProgram, "aMatrix" );

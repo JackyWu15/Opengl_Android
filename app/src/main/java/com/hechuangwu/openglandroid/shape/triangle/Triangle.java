@@ -6,7 +6,6 @@ import com.hechuangwu.openglandroid.base.BaseGLSL;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-import java.nio.FloatBuffer;
 
 /**
  * Created by cwh on 2019/6/4 0004.
@@ -14,54 +13,57 @@ import java.nio.FloatBuffer;
  */
 public class Triangle extends BaseGLSL{
 
-    // 简单的顶点着色器
-    protected static final String vertexShaderCode =
+    // 顶点着色器
+    protected  final String vertexShaderCode =
             "attribute vec4 aPosition;\n" +
                     " void main() {\n" +
                     "     gl_Position   = aPosition;\n" +
                     " }";
 
-    // 简单的片元着色器
-    protected static final String fragmentShaderCode =
+    // 片元着色器
+    protected  final String fragmentShaderCode =
             " precision mediump float;\n" +
                     " uniform vec4 aColor;\n" +
                     " void main() {\n" +
                     "     gl_FragColor = aColor;\n" +
                     " }";
     //顶点坐标
-    protected static float triangleCoords[] = {
+    protected  float triangleCoords[] = {
             0.0f, 0.5f, 0.0f,
             -0.5f, -0.5f, 0.0f,
             0.5f, -0.5f, 0.0f,
     };
 
     //坐标分量个数
-    protected static final int COORDS_COMPONENT = 3;
+    protected  final int COORDS_COMPONENT = 3;
     //顶点个数
-    protected static final int COORDS_SIZE = triangleCoords.length/COORDS_COMPONENT;
-    //数据类型占用字节数
-    protected static final int BYTE_SIZE = Float.SIZE/Byte.SIZE;
+    protected  final int COORDS_SIZE = triangleCoords.length/COORDS_COMPONENT;
     //填充颜色
-    protected static float color[] = {1.0f,0.5f,0.5f,1.0f};
-    //顶点数组
-    protected  FloatBuffer mVertexBuffer;
-    protected int mProgram;
+    protected  float color[] = {1.0f,0.5f,0.5f,1.0f};
+
 
     public Triangle() {
+        allocateBuffer();
+        initProgram();
+    }
+
+    @Override
+    protected void allocateBuffer(){
         GLES20.glClearColor( 1.0f, 1.0f, 1.0f, 1.0f );
         //为顶点数据分配内存
-        ByteBuffer byteBuffer = ByteBuffer.allocateDirect( triangleCoords.length * BYTE_SIZE );
+        ByteBuffer byteBuffer = ByteBuffer.allocateDirect( triangleCoords.length * FLOAT_BYTE_SIZE );
         byteBuffer.order( ByteOrder.nativeOrder() );
         mVertexBuffer = byteBuffer.asFloatBuffer();
         mVertexBuffer.put( triangleCoords );
         mVertexBuffer.position(0);
-
     }
 
+    @Override
     protected void initProgram(){
         mProgram = createProgram( vertexShaderCode, fragmentShaderCode );
     }
 
+    @Override
     public void draw(){
         if(mProgram!=0){
             //开启程序
@@ -69,7 +71,7 @@ public class Triangle extends BaseGLSL{
             //顶点着色器坐标入口
             int aPosition = GLES20.glGetAttribLocation( mProgram, "aPosition" );
             //指向着色器内存，并指定步长和数据，存入数据
-            GLES20.glVertexAttribPointer( aPosition,COORDS_COMPONENT,GLES20.GL_FLOAT,true,COORDS_COMPONENT*(BYTE_SIZE), mVertexBuffer);
+            GLES20.glVertexAttribPointer( aPosition,COORDS_COMPONENT,GLES20.GL_FLOAT,true,COORDS_COMPONENT*FLOAT_BYTE_SIZE, mVertexBuffer);
             //顶点着色器默认关闭，需启动
             GLES20.glEnableVertexAttribArray( aPosition );
 
