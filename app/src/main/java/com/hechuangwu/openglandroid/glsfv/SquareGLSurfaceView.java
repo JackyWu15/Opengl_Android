@@ -19,7 +19,7 @@ public class SquareGLSurfaceView extends BaseGLSurfaceView {
         super( context );
 //        setRenderer( new SquareRenderer() );//普通正方形
 //        setRenderer( new CubeRenderer() );//立方体
-        setRenderer( new MatrixCubeRenderer() );
+        setRenderer( new MatrixCubeRenderer() );//平移旋转缩放立方体
     }
 
     class SquareRenderer implements Renderer{

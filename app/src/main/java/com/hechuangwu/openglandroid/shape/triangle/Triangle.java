@@ -34,8 +34,6 @@ public class Triangle extends BaseGLSL{
             0.5f, -0.5f, 0.0f,
     };
 
-    //坐标分量个数
-    protected  final int COORDS_COMPONENT = 3;
     //顶点个数
     protected  final int COORDS_SIZE = triangleCoords.length/COORDS_COMPONENT;
     //填充颜色
