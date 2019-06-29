@@ -70,7 +70,7 @@ public class BallWithLight extends BaseGLSL {
     protected float[] lightLocation = {80.0f, 80.0f, 80.0f};//光源位置
     protected float[] cameraLocation = {0.0f, 0.0f, 10.0f};//相机颜色
     protected float[] lightColor = {1.0f, 1.0f, 1.0f, 1.0f};//光源颜色
-    protected float[] objectColor = {1f, 0.5f, 0.3f, 1.0f};//物体颜色
+    protected float[] objectColor = {0f, 1.0f, 1.0f, 1.0f};//物体颜色
 
 
     private float step = 2f;

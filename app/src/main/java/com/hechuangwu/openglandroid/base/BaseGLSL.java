@@ -29,7 +29,8 @@ public abstract class BaseGLSL  {
     protected FloatBuffer mVertexBuffer;
     //坐标分量个数
     protected  final int COORDS_COMPONENT = 3;
-
+    //顶点个数
+    protected int mCoordsSize;
     /**
      * 创建着色器，编译代码
      * @param type 着色器类型

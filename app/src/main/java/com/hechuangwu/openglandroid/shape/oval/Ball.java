@@ -38,7 +38,7 @@ public class Ball extends BaseGLSL {
                     "}";
 
 
-    protected int mCoordsSize;
+
     private float step = 1.0f;
 
     //球以(0,0,0)为中心，以R为半径，则球上任意一点的坐标为

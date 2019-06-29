@@ -5,6 +5,8 @@ import android.content.Context;
 import com.hechuangwu.openglandroid.base.BaseGLSurfaceView;
 import com.hechuangwu.openglandroid.shape.oval.Ball;
 import com.hechuangwu.openglandroid.shape.oval.BallWithLight;
+import com.hechuangwu.openglandroid.shape.oval.Cone;
+import com.hechuangwu.openglandroid.shape.oval.Cylinder;
 import com.hechuangwu.openglandroid.shape.oval.Oval;
 
 import javax.microedition.khronos.egl.EGLConfig;
@@ -19,8 +21,9 @@ public class OvalGLSurfaceView extends BaseGLSurfaceView {
         super( context );
         //        setRenderer( new OvalRenderer() );//圆
 //                setRenderer( new BallRenderer() );//球体
-                setRenderer( new BallWithLightRenderer() );//带光球体
-//                setRenderer(  );//圆锥体
+//                setRenderer( new BallWithLightRenderer() );//带光球体
+//                setRenderer( new ConeRenderer() );//圆锥体
+                setRenderer( new CylinderRenderer() );//圆柱体
         setRenderMode( RENDERMODE_WHEN_DIRTY );//只有在创建和调用requestRender()时才会刷新。
     }
 
@@ -83,6 +86,43 @@ public class OvalGLSurfaceView extends BaseGLSurfaceView {
         }
     }
 
+    class ConeRenderer implements Renderer{
+        Cone cone;
+        @Override
+        public void onDrawFrame(GL10 gl) {
+            cone.draw();
+        }
 
+        @Override
+        public void onSurfaceChanged(GL10 gl, int width, int height) {
+            cone.onSurfaceChanged( width,height );
+        }
+
+        @Override
+        public void onSurfaceCreated(GL10 gl, EGLConfig config) {
+            cone = new Cone();
+            cone.onSurfaceCreated();
+        }
+    }
+
+    class CylinderRenderer implements Renderer {
+        Cylinder cylinder;
+
+        @Override
+        public void onDrawFrame(GL10 gl) {
+            cylinder.draw();
+        }
+
+        @Override
+        public void onSurfaceChanged(GL10 gl, int width, int height) {
+            cylinder.onSurfaceChanged( width, height );
+        }
+
+        @Override
+        public void onSurfaceCreated(GL10 gl, EGLConfig config) {
+            cylinder = new Cylinder();
+            cylinder.onSurfaceCreated();
+        }
+    }
 
 }
