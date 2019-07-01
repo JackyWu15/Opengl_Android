@@ -29,12 +29,12 @@ public class Triangle extends BaseGLSL{
                     " }";
     //顶点坐标
     protected  float triangleCoords[] = {
-            0.0f, 0.5f, 0.0f,
-            -0.5f, -0.5f, 0.0f,
-            0.5f, -0.5f, 0.0f,
+            0.0f, 0.622008459f, 0.0f,
+            -0.5f, -0.311004243f, 0.0f,
+            0.5f, -0.311004243f, 0.0f
     };
 
-    //顶点个数
+    //顶点的个数
     protected  final int COORDS_SIZE = triangleCoords.length/COORDS_COMPONENT;
     //填充颜色
     protected  float color[] = {1.0f,0.5f,0.5f,1.0f};
@@ -63,7 +63,6 @@ public class Triangle extends BaseGLSL{
 
     @Override
     public void draw(){
-        if(mProgram!=0){
             //开启程序
             GLES20.glUseProgram( mProgram );
             //顶点着色器坐标入口
@@ -83,6 +82,5 @@ public class Triangle extends BaseGLSL{
             GLES20.glDrawArrays( GLES20.GL_TRIANGLES,0,COORDS_SIZE);
             //关闭顶点着色器
             GLES20.glDisableVertexAttribArray( aPosition );
-        }
     }
 }

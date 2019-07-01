@@ -51,6 +51,7 @@ public class OvalGLSurfaceView extends BaseGLSurfaceView {
 
         @Override
         public void onDrawFrame(GL10 gl) {
+            
             ball.draw();
         }
 
