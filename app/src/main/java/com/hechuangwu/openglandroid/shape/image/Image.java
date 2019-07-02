@@ -34,7 +34,7 @@ public class Image extends BaseGLSL {
                     "}";
 
     private Bitmap mBitmap;
-    private FloatBuffer mTextureCoordBuffer;
+    protected FloatBuffer mTextureCoordBuffer;
 
     //顶点坐标
     private float[] vertexCoords = {
@@ -53,6 +53,8 @@ public class Image extends BaseGLSL {
 
     //坐标分量个数
     protected   int COORDS_COMPONENT = 2;
+    protected float mScreenRatio;
+
     public Image(){
         allocateBuffer();
         initProgram();
@@ -97,20 +99,20 @@ public class Image extends BaseGLSL {
         int bitmapWidth = mBitmap.getWidth();
         int bitmapHeight = mBitmap.getHeight();
         float bitmapRatio = (float) bitmapWidth / bitmapHeight;
-        float screenRatio = (float) width / height;
+        mScreenRatio = (float) width / height;
 
         //正交投影
         if(width>height){
-            if(bitmapRatio>screenRatio){
-                Matrix.orthoM( mProjection,0,-screenRatio*bitmapRatio,screenRatio*bitmapRatio,-1,1,3,7 );
+            if(bitmapRatio> mScreenRatio){
+                Matrix.orthoM( mProjection,0,-mScreenRatio *bitmapRatio, mScreenRatio *bitmapRatio,-1,1,3,7 );
             }else {
-                Matrix.orthoM( mProjection,0,-screenRatio/bitmapRatio,screenRatio/bitmapRatio,-1,1,3,7 );
+                Matrix.orthoM( mProjection,0,-mScreenRatio /bitmapRatio, mScreenRatio /bitmapRatio,-1,1,3,7 );
             }
         }else {
-            if(bitmapRatio>screenRatio){
-                Matrix.orthoM( mProjection,0,-1,1,-bitmapRatio/screenRatio,bitmapRatio/screenRatio,3,7 );
+            if(bitmapRatio> mScreenRatio){
+                Matrix.orthoM( mProjection,0,-1,1,-bitmapRatio/ mScreenRatio,bitmapRatio/ mScreenRatio,3,7 );
             }else {
-                Matrix.orthoM( mProjection,0,-1,1,-screenRatio/bitmapRatio,screenRatio/bitmapRatio,3,7 );
+                Matrix.orthoM( mProjection,0,-1,1,-mScreenRatio /bitmapRatio, mScreenRatio /bitmapRatio,3,7 );
             }
         }
 
@@ -118,7 +120,7 @@ public class Image extends BaseGLSL {
     }
 
     //生成纹理
-    private int createTexture(){
+    protected int createTexture(){
         int[] texture;
         if(mBitmap!=null&&!mBitmap.isRecycled()){
             texture = new int[1];
@@ -163,6 +165,7 @@ public class Image extends BaseGLSL {
         }
 
     }
+
 
 
 }

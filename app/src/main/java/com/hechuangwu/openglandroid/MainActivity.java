@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         //        setContentView( new OvalGLSurfaceView( this ) );//圆形
 //        setContentView( new TouchGLSurfaceView( this ) );//根据触摸位置画点
         try {
-            setContentView( new ImageGLSurfaceView( this ) );//纹理贴图
+            setContentView( new ImageGLSurfaceView( this ) );//纹理贴图和滤镜处理
         } catch (IOException e) {
             e.printStackTrace();
         }

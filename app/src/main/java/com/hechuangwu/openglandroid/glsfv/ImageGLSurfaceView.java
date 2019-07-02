@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 
 import com.hechuangwu.openglandroid.base.BaseGLSurfaceView;
 import com.hechuangwu.openglandroid.shape.image.Image;
+import com.hechuangwu.openglandroid.shape.image.ImageTransform;
 
 import java.io.IOException;
 
@@ -22,12 +23,35 @@ public class ImageGLSurfaceView extends BaseGLSurfaceView {
 
     public ImageGLSurfaceView(Context context) throws IOException {
         super( context );
-        mBitmap = BitmapFactory.decodeStream( context.getResources().getAssets().open( "texture/Einstein.jpg" ) );
-        setRenderer( new ImageRenderer() );
+        mBitmap = BitmapFactory.decodeStream( context.getResources().getAssets().open( "texture/Einstein1.jpg" ) );
+//        setRenderer( new ImageRenderer() );//纹理贴图
+        setRenderer( new ImageTransformRenderer( ImageTransform.ImageFilter.MAGN) );//图片滤镜特效
         setRenderMode( RENDERMODE_WHEN_DIRTY );
     }
 
+    class ImageTransformRenderer implements Renderer{
+        ImageTransform.ImageFilter mImageFilter;
+        ImageTransform imageTransform;
+        ImageTransformRenderer(ImageTransform.ImageFilter imageFilter){
+            this.mImageFilter = imageFilter;
+        }
+        @Override
+        public void onDrawFrame(GL10 gl) {
+            imageTransform.draw();
+        }
 
+        @Override
+        public void onSurfaceChanged(GL10 gl, int width, int height) {
+            imageTransform.onSurfaceChanged( width,height );
+        }
+
+        @Override
+        public void onSurfaceCreated(GL10 gl, EGLConfig config) {
+            imageTransform  = new ImageTransform( mImageFilter );
+            imageTransform.onSurfaceCreated();
+            imageTransform.setBitmap( mBitmap );
+        }
+    }
 
     class ImageRenderer implements Renderer {
         Image image;
