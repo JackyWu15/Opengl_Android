@@ -2,7 +2,8 @@ package com.hechuangwu.openglandroid.shape.touch;
 
 import android.opengl.GLES20;
 
-import com.hechuangwu.openglandroid.base.BaseGLSL;
+import com.he.chuangwu.libpraticles.base.BaseGLSL;
+
 
 /**
  * Created by cwh on 2019/7/1 0001.

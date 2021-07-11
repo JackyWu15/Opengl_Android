@@ -2,7 +2,7 @@ package com.hechuangwu.openglandroid.glsfv;
 
 import android.content.Context;
 
-import com.hechuangwu.openglandroid.base.BaseGLSurfaceView;
+import com.he.chuangwu.libpraticles.base.BaseGLSurfaceView;
 import com.hechuangwu.openglandroid.shape.oval.Ball;
 import com.hechuangwu.openglandroid.shape.oval.BallWithLight;
 import com.hechuangwu.openglandroid.shape.oval.Cone;

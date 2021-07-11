@@ -3,7 +3,7 @@ package com.hechuangwu.openglandroid.shape.square;
 import android.opengl.GLES20;
 import android.opengl.Matrix;
 
-import com.hechuangwu.openglandroid.base.BaseGLSL;
+import com.he.chuangwu.libpraticles.base.BaseGLSL;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;

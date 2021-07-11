@@ -1,8 +1,12 @@
 package com.hechuangwu.openglandroid.shape.triangle;
 
+import android.content.Context;
 import android.opengl.GLES20;
+import android.util.Log;
 
-import com.hechuangwu.openglandroid.base.BaseGLSL;
+import com.he.chuangwu.libpraticles.base.BaseGLSL;
+import com.he.chuangwu.libpraticles.utils.TextResourceReader;
+import com.hechuangwu.openglandroid.R;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -11,17 +15,17 @@ import java.nio.ByteOrder;
  * Created by cwh on 2019/6/4 0004.
  * 功能:
  */
-public class Triangle extends BaseGLSL{
+public class Triangle extends BaseGLSL {
 
     // 顶点着色器
-    protected  final String vertexShaderCode =
+    protected   String vertexShaderCode =
             "attribute vec4 aPosition;\n" +
                     " void main() {\n" +
                     "     gl_Position   = aPosition;\n" +
                     " }";
 
     // 片元着色器
-    protected  final String fragmentShaderCode =
+    protected   String fragmentShaderCode =
             " precision mediump float;\n" +
                     " uniform vec4 aColor;\n" +
                     " void main() {\n" +
@@ -38,7 +42,6 @@ public class Triangle extends BaseGLSL{
     protected  final int COORDS_SIZE = triangleCoords.length/COORDS_COMPONENT;
     //填充颜色
     protected  float color[] = {1.0f,0.5f,0.5f,1.0f};
-
 
     public Triangle() {
         allocateBuffer();

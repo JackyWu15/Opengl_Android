@@ -1,4 +1,4 @@
-package com.hechuangwu.openglandroid.base;
+package com.he.chuangwu.libpraticles.base;
 
 import android.content.Context;
 import android.opengl.GLSurfaceView;

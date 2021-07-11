@@ -3,7 +3,7 @@ package com.hechuangwu.openglandroid.glsfv;
 import android.content.Context;
 import android.view.MotionEvent;
 
-import com.hechuangwu.openglandroid.base.BaseGLSurfaceView;
+import com.he.chuangwu.libpraticles.base.BaseGLSurfaceView;
 import com.hechuangwu.openglandroid.shape.touch.Point;
 import com.hechuangwu.openglandroid.shape.touch.RotateTriangle;
 
@@ -21,8 +21,8 @@ public class TouchGLSurfaceView extends BaseGLSurfaceView {
 
     public TouchGLSurfaceView(Context context) {
         super( context );
-        //        setRenderer( new PointRenderer() );//画点
-        setRenderer( new RotateTriangleRenderer() );//旋转三角形
+                setRenderer( new PointRenderer() );//画点
+//        setRenderer( new RotateTriangleRenderer() );//旋转三角形
         setRenderMode( RENDERMODE_WHEN_DIRTY );
     }
 

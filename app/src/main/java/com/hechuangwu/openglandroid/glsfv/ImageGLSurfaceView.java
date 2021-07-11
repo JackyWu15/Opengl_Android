@@ -4,7 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-import com.hechuangwu.openglandroid.base.BaseGLSurfaceView;
+import com.he.chuangwu.libpraticles.base.BaseGLSurfaceView;
 import com.hechuangwu.openglandroid.shape.image.Image;
 import com.hechuangwu.openglandroid.shape.image.ImageTransform;
 

@@ -3,7 +3,7 @@ package com.hechuangwu.openglandroid.glsfv;
 import android.content.Context;
 import android.opengl.GLES20;
 
-import com.hechuangwu.openglandroid.base.BaseGLSurfaceView;
+import com.he.chuangwu.libpraticles.base.BaseGLSurfaceView;
 import com.hechuangwu.openglandroid.shape.square.MatrixCube;
 import com.hechuangwu.openglandroid.shape.triangle.CameraTriangle;
 import com.hechuangwu.openglandroid.shape.triangle.ColorfulTriangle;
@@ -31,7 +31,6 @@ public class TriangleGLSurfaceView extends BaseGLSurfaceView {
         @Override
         public void onSurfaceCreated(GL10 gl, EGLConfig config) {
             triangle = new Triangle();
-
         }
 
         @Override
