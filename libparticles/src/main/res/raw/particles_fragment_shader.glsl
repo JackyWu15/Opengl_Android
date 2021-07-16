@@ -9,8 +9,9 @@
 // 顶点着色器也可指定精度，但因为位置需要精确，所以默认使用highp
 // 而片元着色器为了兼容性能和质量，则通常使用mediump精度
 precision mediump float;
-uniform vec4 aColor;        // uniform 可为每个顶点公用，这里分量对应红绿蓝透明度
+//uniform vec4 aColor;        // uniform 可为每个顶点公用，这里分量对应红绿蓝透明度
+varying vec4 vColor;
 void main() {
-    gl_FragColor = aColor;
+    gl_FragColor = vColor;
 }
 

@@ -24,8 +24,8 @@ public class ImageGLSurfaceView extends BaseGLSurfaceView {
     public ImageGLSurfaceView(Context context) throws IOException {
         super( context );
         mBitmap = BitmapFactory.decodeStream( context.getResources().getAssets().open( "texture/Einstein1.jpg" ) );
-//        setRenderer( new ImageRenderer() );//纹理贴图
-        setRenderer( new ImageTransformRenderer( ImageTransform.ImageFilter.MAGN) );//图片滤镜特效
+        setRenderer( new ImageRenderer() );//纹理贴图
+//        setRenderer( new ImageTransformRenderer( ImageTransform.ImageFilter.MAGN) );//图片滤镜特效
         setRenderMode( RENDERMODE_WHEN_DIRTY );
     }
 

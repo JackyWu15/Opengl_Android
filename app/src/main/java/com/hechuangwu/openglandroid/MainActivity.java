@@ -6,7 +6,10 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.hechuangwu.openglandroid.glsfv.ImageGLSurfaceView;
 import com.hechuangwu.openglandroid.glsfv.TriangleGLSurfaceView;
+
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,12 +19,12 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        findViewById(R.id.particles).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, ParticlesActivity.class));
-            }
-        });
+//        findViewById(R.id.particles).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(MainActivity.this, ParticlesActivity.class));
+//            }
+//        });
 //        pratice();
     }
 
@@ -32,10 +35,10 @@ public class MainActivity extends AppCompatActivity {
 //                setContentView( new SquareGLSurfaceView( this ) );//正方形
 //        setContentView( new OvalGLSurfaceView( this ) );//圆形
 //        setContentView( new TouchGLSurfaceView( this ) );//根据触摸位置画点
-//        try {
-//            setContentView( new ImageGLSurfaceView( this ) );//纹理贴图和滤镜处理
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            setContentView( new ImageGLSurfaceView( this ) );//纹理贴图和滤镜处理
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
